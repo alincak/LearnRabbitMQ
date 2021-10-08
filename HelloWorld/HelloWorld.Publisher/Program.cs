@@ -29,6 +29,8 @@ namespace HelloWorld.Publisher
       channel.BasicPublish(string.Empty, "hello-queue", null, messageBody);
 
       Console.WriteLine("Mesajınız gönderilmiştir.");
+
+      Console.ReadLine();
     }
   }
 }
