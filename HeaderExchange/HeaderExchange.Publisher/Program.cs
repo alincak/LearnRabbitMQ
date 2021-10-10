@@ -22,6 +22,7 @@ namespace HeaderExchange.Publisher
 
       var properties = channel.CreateBasicProperties();
       properties.Headers = headers;
+      //properties.Persistent = true; mesajların kalıcı olması için
 
       channel.BasicPublish("header-exchange", "", properties, Encoding.UTF8.GetBytes("Header mesajım."));
 
