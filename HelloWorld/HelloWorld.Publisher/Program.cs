@@ -1,5 +1,6 @@
 ﻿using RabbitMQ.Client;
 using System;
+using System.Linq;
 using System.Text;
 
 namespace HelloWorld.Publisher
@@ -22,6 +23,14 @@ namespace HelloWorld.Publisher
 
       channel.QueueDeclare("hello-queue", false, false, false);
 
+      //HelloWord(channel);
+      WorkQueue(channel);
+
+      Console.ReadLine();
+    }
+
+    static void HelloWord(IModel channel)
+    {
       var message = "hello world";
 
       var messageBody = Encoding.UTF8.GetBytes(message);
@@ -29,8 +38,21 @@ namespace HelloWorld.Publisher
       channel.BasicPublish(string.Empty, "hello-queue", null, messageBody);
 
       Console.WriteLine("Mesajınız gönderilmiştir.");
-
-      Console.ReadLine();
     }
+
+    static void WorkQueue(IModel channel)
+    {
+      Enumerable.Range(1, 50).ToList().ForEach(x =>
+      {
+        var message = $"Message {x}";
+
+        var messageBody = Encoding.UTF8.GetBytes(message);
+
+        channel.BasicPublish(string.Empty, "hello-queue", null, messageBody);
+
+        Console.WriteLine($"Mesajınız gönderilmiştir: {message}");
+      });
+    }
+
   }
 }
