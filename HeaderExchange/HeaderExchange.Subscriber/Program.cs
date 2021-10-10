@@ -1,9 +1,11 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Shared.RabbitMQ;
+using Shared.RabbitMQ.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 
 namespace HeaderExchange.Subscriber
@@ -36,8 +38,10 @@ namespace HeaderExchange.Subscriber
 
       consumer.Received += (object sender, BasicDeliverEventArgs e) =>
       {
-        var message = Encoding.UTF8.GetString(e.Body.ToArray());
-        Console.WriteLine(message);
+        var json = Encoding.UTF8.GetString(e.Body.ToArray());
+        var product = JsonSerializer.Deserialize<Product>(json);
+
+        Console.WriteLine($"Gelen mesaj: {product.Id}, {product.Name}, {product.Price}, {product.Stock}");
 
         Thread.Sleep(1000);
 
