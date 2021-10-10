@@ -5,7 +5,7 @@ using System;
 using System.Text;
 using System.Threading;
 
-namespace HelloWorld.Subscriber
+namespace FanoutExchange.Subscriber
 {
   class Program
   {
@@ -13,13 +13,20 @@ namespace HelloWorld.Subscriber
     {
       var channel = RabbitMQUtil.GetChannel();
 
-      //channel.QueueDeclare("hello-queue", false, false, false);
+      var randomQueueName = channel.QueueDeclare().QueueName;
 
+      /////Kuyruk kalıcı olsun istiyorsak...
+      //var randomQueueName = "log-database-save-queue";
+      //channel.QueueDeclare(randomQueueName, true, false, false);
+
+      channel.QueueBind(randomQueueName, "logs-fanout", "", null);
       channel.BasicQos(0, 1, false);
 
       var consumer = new EventingBasicConsumer(channel);
 
-      channel.BasicConsume("hello-queue", false, consumer);
+      channel.BasicConsume(randomQueueName, false, consumer);
+
+      Console.WriteLine("Log dinleniyor...");
 
       consumer.Received += (object sender, BasicDeliverEventArgs e) =>
       {

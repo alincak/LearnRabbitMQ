@@ -1,4 +1,5 @@
 ﻿using RabbitMQ.Client;
+using Shared.RabbitMQ;
 using System;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,7 @@ namespace HelloWorld.Publisher
   {
     static void Main(string[] args)
     {
-      ConnectionFactory factory = new ConnectionFactory();
-      factory.UserName = "guest";
-      factory.Password = "guest";
-
-      var endpoints = new System.Collections.Generic.List<AmqpTcpEndpoint> {
-                              new AmqpTcpEndpoint("localhost")
-                            };
-
-      using var connection = factory.CreateConnection(endpoints);
-
-      var channel = connection.CreateModel();
+      var channel = RabbitMQUtil.GetChannel();
 
       channel.QueueDeclare("hello-queue", false, false, false);
 
