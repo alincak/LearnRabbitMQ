@@ -30,6 +30,7 @@ namespace Watermark.WebApp
       services.AddSingleton(sp => new ConnectionFactory() { Uri = new Uri(Configuration.GetConnectionString("RabbitMQ")) });
 
       services.AddSingleton<RabbitMQClientService>();
+      services.AddSingleton<RabbitMQPublisher>();
 
       services.AddDbContext<AppDbContext>(options =>
       {
