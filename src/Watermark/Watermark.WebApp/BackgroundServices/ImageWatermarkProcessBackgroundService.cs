@@ -47,6 +47,8 @@ namespace Watermark.WebApp.BackgroundServices
 
     private Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
     {
+      Task.Delay(5000).Wait();
+
       try
       {
         var productImageCreatedEvent = JsonSerializer.Deserialize<ProductImageCreatedEvent>(Encoding.UTF8.GetString(@event.Body.ToArray()));
@@ -57,7 +59,7 @@ namespace Watermark.WebApp.BackgroundServices
 
         using var graphic = Graphics.FromImage(image);
 
-        var font = new Font(FontFamily.GenericMonospace, 32, FontStyle.Bold, GraphicsUnit.Pixel);
+        var font = new Font(FontFamily.GenericMonospace, 40, FontStyle.Bold, GraphicsUnit.Pixel);
 
         var siteName = "www.mysite.com";
 
