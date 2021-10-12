@@ -1,4 +1,5 @@
 using ExcelCreate.WebApp.Models;
+using ExcelCreate.WebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RabbitMQ.Client;
+using System;
 
 namespace ExcelCreate.WebApp
 {
@@ -21,6 +24,11 @@ namespace ExcelCreate.WebApp
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddSingleton(sp => new ConnectionFactory() { Uri = new Uri(Configuration.GetConnectionString("RabbitMQ")), DispatchConsumersAsync = true });
+
+      services.AddSingleton<RabbitMQClientService>();
+      services.AddSingleton<RabbitMQPublisher>();
+
       services.AddDbContext<AppDbContext>(options =>
       {
         options.UseSqlServer(Configuration.GetConnectionString("SqlSever"));
