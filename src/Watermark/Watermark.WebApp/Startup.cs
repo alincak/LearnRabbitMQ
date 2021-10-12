@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Watermark.WebApp.BackgroundServices;
 using Watermark.WebApp.Models;
 using Watermark.WebApp.Services;
 
@@ -36,6 +37,8 @@ namespace Watermark.WebApp
       {
         options.UseInMemoryDatabase(databaseName: "productdb");
       });
+
+      services.AddHostedService<ImageWatermarkProcessBackgroundService>();
 
       services.AddControllersWithViews();
     }
