@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExcelCreate", "ExcelCreate"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelCreate.WebApp", "src\ExcelCreate\ExcelCreate.WebApp\ExcelCreate.WebApp.csproj", "{88F30FC8-223D-4611-9D0B-FFA17F58A30C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileCreateWorkerService", "src\ExcelCreate\FileCreateWorkerService\FileCreateWorkerService.csproj", "{F081FBCF-ECD7-43EA-AEBC-714CB7517197}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{88F30FC8-223D-4611-9D0B-FFA17F58A30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F30FC8-223D-4611-9D0B-FFA17F58A30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F30FC8-223D-4611-9D0B-FFA17F58A30C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F081FBCF-ECD7-43EA-AEBC-714CB7517197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F081FBCF-ECD7-43EA-AEBC-714CB7517197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F081FBCF-ECD7-43EA-AEBC-714CB7517197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F081FBCF-ECD7-43EA-AEBC-714CB7517197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +131,7 @@ Global
 		{09AE0B5F-473E-4EE3-8633-8D8C0B236161} = {03B639F8-F476-4E45-8709-3BF22FECFDE8}
 		{F57AA931-9CF6-4E64-8472-F92F833EE202} = {4EA57608-DE70-42C8-B4F3-7ADC0F5591C8}
 		{88F30FC8-223D-4611-9D0B-FFA17F58A30C} = {F57AA931-9CF6-4E64-8472-F92F833EE202}
+		{F081FBCF-ECD7-43EA-AEBC-714CB7517197} = {F57AA931-9CF6-4E64-8472-F92F833EE202}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2003395C-C75A-4F23-B576-355514AB4F4E}
